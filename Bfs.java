@@ -1,4 +1,33 @@
-package PACKAGE_NAME;
 
-public class Bfs {
-}
+    class Solution {
+        private int[][] graph;
+        private boolean[] visited;
+
+        public int findCircleNum(int[][] isConnected) {
+            graph = isConnected;
+            int n = graph.length;
+            visited = new boolean[n];
+
+            int provinceCount = 0;
+
+            for (int i = 0; i < n; i++) {
+                if (!visited[i]) {
+                    dfs(i);
+                    provinceCount++;
+                }
+            }
+
+            return provinceCount;
+        }
+
+        private void dfs(int currentCity) {
+            visited[currentCity] = true;
+
+            for (int nextCity = 0; nextCity < graph.length; nextCity++) {
+                if (!visited[nextCity] && graph[currentCity][nextCity] == 1) {
+                    dfs(nextCity);
+                }
+            }
+        }
+    }
+
