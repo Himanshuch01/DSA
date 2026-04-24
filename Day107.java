@@ -1,0 +1,25 @@
+public class Day107 {
+
+        public int furthestDistanceFromOrigin(String moves) {
+
+            int leftCount = countCharacter(moves, 'L');
+            int rightCount = countCharacter(moves, 'R');
+            int wildcardCount = countCharacter(moves, '_');
+
+            return Math.abs(leftCount - rightCount) + wildcardCount;
+        }
+
+        private int countCharacter(String str, char targetChar) {
+            int count = 0;
+
+            // Iterate through each character in the string
+            for (int i = 0; i < str.length(); i++) {
+                if (str.charAt(i) == targetChar) {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+    }
+
